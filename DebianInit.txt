@@ -1,5 +1,5 @@
 apt-get update
-apt-get install ntp sudo curl wget nano unattended-upgrades
+apt-get -y install ntp sudo curl wget nano unattended-upgrades
 adduser jan sudo
 
 
