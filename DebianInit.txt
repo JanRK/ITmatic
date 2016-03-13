@@ -1,2 +1,6 @@
-apt-get install ntp
+apt-get update
+apt-get install ntp sudo curl wget nano unattended-upgrades
+adduser jan sudo
 
+
+sed -i 's/debian.pool/dk.pool/g' /etc/ntp.conf
