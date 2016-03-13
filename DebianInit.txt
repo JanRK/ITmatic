@@ -1,6 +1,45 @@
 apt-get update
-apt-get -y install ntp sudo curl wget nano unattended-upgrades
+apt-get -y install ntp sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https
 adduser jan sudo
 
 
+# NTP
 sed -i 's/debian.pool/dk.pool/g' /etc/ntp.conf
+systemctl restart ntp
+
+
+
+# unattended-upgrades
+cat > /etc/apt/apt.conf.d/20auto-upgrades << EOF
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+EOF
+
+timetid=$(shuf -i 3-5 -n 1)
+minuttid=$(shuf -i 10-59 -n 1)
+
+cat >>  /etc/apt/apt.conf.d/50unattended-upgrades << EOF
+Unattended-Upgrade::Automatic-Reboot "true";
+Unattended-Upgrade::Automatic-Reboot-Time "0$timetid:$minuttid";
+Unattended-Upgrade::Remove-Unused-Dependencies "true";
+EOF
+
+
+
+# nginx
+wget -O - http://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+
+sudo sh -c "echo 'deb http://nginx.org/packages/debian/ jessie nginx' >> /etc/apt/sources.list.d/nginx.list"
+sudo sh -c "echo 'deb-src http://nginx.org/packages/debian/ jessie nginx' >> /etc/apt/sources.list.d/nginx.list"
+
+
+# MariaDB
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+
+sudo sh -c "echo 'deb http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.1/debian jessie main' >> /etc/apt/sources.list.d/mariadb.list"
+sudo sh -c "echo 'deb-src http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.1/debian jessie main' >> /etc/apt/sources.list.d/mariadb.list"
+
+
+# HHVM
+wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | sudo apt-key add -
+sudo sh -c "echo 'deb http://dl.hhvm.com/debian jessie main' >> /etc/apt/sources.list.d/hhvm.list"
