@@ -1,4 +1,5 @@
-Rem All version of windows
+dir c:\|find "bytes free"
+
 net stop bits
 net stop wuauserv
 
@@ -32,3 +33,5 @@ IF EXIST "C:\Users\" (
   forfiles /p "%%x\AppData\Local\Microsoft\Windows\WER\ReportQueue" /s /m *.* /C "cmd /c del /Q @path"
  )
 )
+dir c:\|find "bytes free"
+pause
