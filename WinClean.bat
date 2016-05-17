@@ -33,5 +33,10 @@ IF EXIST "C:\Users\" (
   forfiles /p "%%x\AppData\Local\Microsoft\Windows\WER\ReportQueue" /s /m *.* /C "cmd /c del /Q @path"
  )
 )
+
+:SystemRestore
+echo powershell "disable-computerrestore -drive 'C:\'"
+
+
 dir c:\|find "bytes free"
 pause
