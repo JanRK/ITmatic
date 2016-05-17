@@ -21,8 +21,9 @@ for /d %%i in ("c:\$Recycle.Bin\*") do rmdir /s /q "%%i"
 
 for /d %%i in ("c:\programdata\microsoft\windows\wer\reportqueue\*") do rmdir /s /q "%%i" 
 
-dism /online /cleanup-image /spsupserceded
-dism /online /cleanup-image /startcomponentcleanup
+Dism.exe /online /Cleanup-Image /SPSuperseded
+Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+
 
 IF EXIST "C:\Users\" (
  for /D %%x in ("C:\Users\*") do (               
