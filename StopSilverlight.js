@@ -15,6 +15,6 @@ do {
     wupdate.IsHidden=1;
     WScript.echo("   Hiding update: " + wupdate.Title);
     silverstreak = true;
-    } else { WScript.echo(".............. " + wupdate.Title);"}
+    }
   }
 } while ( silverstreak );  // repeat search
