@@ -1,8 +1,9 @@
 FROM debian:jessie
 
+RUN apt-get -y install curl wget
 
 RUN \
-  wget -O - http://nginx.org/keys/nginx_signing.key | sudo apt-key add - && \
+  wget -O - http://nginx.org/keys/nginx_signing.key | apt-key add - && \
   sh -c "echo 'deb http://nginx.org/packages/debian/ jessie nginx' >> /etc/apt/sources.list.d/nginx.list" && \
   sh -c "echo 'deb-src http://nginx.org/packages/debian/ jessie nginx' >> /etc/apt/sources.list.d/nginx.list" && \
 
