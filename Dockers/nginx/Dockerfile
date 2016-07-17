@@ -5,7 +5,7 @@ nginx_PACKAGES="curl wget ca-certificates"
 nginx_PACKAGES="$nginx_PACKAGES ca-certificates"
 
 
-RUN apt-get update -y && apt-get install $minimal_apt_get_args $NGHTTP2_BUILD_PACKAGES
+RUN apt-get update -y && apt-get install $minimal_apt_get_args $nginx_PACKAGES
 
 RUN \
   wget -O - http://nginx.org/keys/nginx_signing.key | apt-key add - && \
@@ -18,7 +18,10 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
   mkdir /var/lib/nginx && \
-  chown -R www-data:www-data /var/lib/nginx
+  chown -R www-data:www-data /var/lib/nginx && \
+  AUTO_ADDED_PACKAGES=`apt-mark showauto` && \
+  apt-get remove --purge -y $AUTO_ADDED_PACKAGES
+
 
 # Define mountable directories.
 VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
