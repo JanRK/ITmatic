@@ -1,1 +1,6 @@
-docker run -d -p 443:443 -p 80:80 -v /docker/nginx/conf.d:/etc/nginx/conf.d -v /docker/nginx/certs:/etc/nginx/certs -v /docker/nginx/logs:/var/log/nginx -v /docker/nginx/www:/var/www -t nginx
+mkdir /jan/amazon/Debian/JKDocker01/nginx/conf.d
+mkdir /jan/amazon/Debian/JKDocker01/nginx/certs
+mkdir /jan/amazon/Debian/JKDocker01/nginx/logs
+mkdir /jan/amazon/Debian/JKDocker01/nginx/www
+
+docker run -d -p 443:443 -p 80:80 -v /jan/amazon/Debian/JKDocker01/nginx/conf.d:/etc/nginx/conf.d -v /jan/amazon/Debian/JKDocker01/nginx/certs:/etc/nginx/certs -v /jan/amazon/Debian/JKDocker01/nginx/logs:/var/log/nginx -v /jan/amazon/Debian/JKDocker01/nginx/www:/var/www -t nginx
