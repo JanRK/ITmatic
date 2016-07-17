@@ -1,1 +1,1 @@
-docker run -d -p 80:80 -v /docker/nginx/conf.d:/etc/nginx/conf.d -v /docker/nginx/certs:/etc/nginx/certs -v /docker/nginx/logs:/var/log/nginx -v /docker/nginx/www:/var/www .
+docker run -d -p 443:443 -p 80:80 -v /docker/nginx/conf.d:/etc/nginx/conf.d -v /docker/nginx/certs:/etc/nginx/certs -v /docker/nginx/logs:/var/log/nginx -v /docker/nginx/www:/var/www -t nginx
