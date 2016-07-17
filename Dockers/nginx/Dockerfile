@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-RUN apt-get -y install curl wget
+RUN apt-get update && apt-get -y install curl wget
 
 RUN \
   wget -O - http://nginx.org/keys/nginx_signing.key | apt-key add - && \
