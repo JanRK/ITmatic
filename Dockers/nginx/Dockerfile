@@ -1,6 +1,11 @@
 FROM debian:jessie
 
-RUN apt-get update && apt-get -y install curl wget
+minimal_apt_get_args='-y --no-install-recommends'
+nginx_PACKAGES="curl wget ca-certificates"
+nginx_PACKAGES="$nginx_PACKAGES ca-certificates"
+
+
+RUN apt-get update -y && apt-get install $minimal_apt_get_args $NGHTTP2_BUILD_PACKAGES
 
 RUN \
   wget -O - http://nginx.org/keys/nginx_signing.key | apt-key add - && \
