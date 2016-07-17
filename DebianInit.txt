@@ -1,5 +1,5 @@
 apt-get update
-apt-get -y install ntp sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https
+apt-get -y install ntp sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates
 adduser jan sudo
 
 
