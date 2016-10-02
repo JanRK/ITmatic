@@ -2,6 +2,7 @@ apt-get update
 apt-get -y install ntp sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates
 adduser jan sudo
 
+# apt-get -y install open-vm-tools 
 
 # NTP
 sed -i 's/debian.pool/dk.pool/g' /etc/ntp.conf
