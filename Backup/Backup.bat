@@ -19,11 +19,11 @@ set hour=%time:~-11,2%
 set hour=%hour: =0%
 set min=%time:~-8,2%
 
-set zipfilename=%~1\%year%.%month%.%day%-%3.zip
-set destination=%~1\%year%.%month%.%day%-%3.zip
+set zipfilename=%year%.%month%.%day%-%3.zip
+set destination=%~1
+set dest="%destination%\%zipfilename%"
 
 set source="%~2\*"
-set dest="%destination%Backups\%zipfilename%"
 
 set AppExePath="%ProgramFiles%\7-Zip\7z.exe"
 if not exist %AppExePath% set AppExePath="%ProgramFiles(x86)%\7-Zip\7z.exe"
