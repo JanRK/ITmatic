@@ -31,7 +31,7 @@ if not exist %AppExePath% goto notInstalled
 
 echo Backing up %source% to %dest%
 
-%AppExePath% a -rtzip %dest% %source%
+%AppExePath% a -r -mx0 %dest% %source%
 
 echo %source% backed up to %dest% is complete!
 
