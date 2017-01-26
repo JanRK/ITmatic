@@ -1,0 +1,37 @@
+Update-ExecutionPolicy Unrestricted
+Set-ExplorerOptions -showHiddenFilesFoldersDrives -showProtectedOSFiles -showFileExtensions
+Enable-RemoteDesktop
+
+
+
+cinst 7zip
+cinst curl
+cinst DotNet4.5
+cinst jre8
+cinst keepass
+cinst keepass-keepasshttp
+cinst keepass-plugin-keeanywhere
+cinst mpc-hc
+cinst mpv
+cinst notepadplusplus
+cinst streamlink
+cinst streamlink-twitch-gui
+cinst vcredist2005
+cinst vcredist2008
+cinst vcredist2010
+cinst vcredist2012
+cinst vcredist2013
+cinst vcredist2015
+cinst vlc
+cinst wget
+cinst youtube-dl
+
+cinst teamviewer -version 11.0.66695
+choco pin add -n=teamviewer --version 11.0.66695
+
+cinst TelnetClient -source windowsFeatures
+
+Install-ChocolateyPinnedTaskBarItem "C:\ProgramData\chocolatey\lib\streamlink-twitch-gui\streamlink-twitch-gui.exe --user-data-dir="C:\Users\Jan Knudsen\AppData\Local\streamlink-twitch-gui\User Data" --profile-directory=Default --app-id=kjlcknihpadniagphehmpojkkdigigjp"
+Install-ChocolateyPinnedTaskBarItem "$env:programfiles\console\console.exe"
+
+Install-WindowsUpdate -AcceptEula
