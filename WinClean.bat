@@ -1,4 +1,10 @@
-dir c:\|find "bytes free"
+$preclean = Get-WmiObject Win32_LogicalDisk -ComputerName remotecomputer -Filter "DeviceID='C:'" |
+Select-Object Size,FreeSpace
+
+<#
+$preclean.Size
+$preclean.FreeSpace
+#>
 
 net stop bits
 net stop wuauserv
@@ -38,5 +44,10 @@ IF EXIST "C:\Users\" (
 echo powershell "disable-computerrestore -drive 'C:\'"
 
 
-dir c:\|find "bytes free"
+$postclean = Get-WmiObject Win32_LogicalDisk -ComputerName remotecomputer -Filter "DeviceID='C:'" |
+Select-Object Size,FreeSpace
+
+write-host Space saved
+$preclean.FreeSpace-$postclean.FreeSpace
 pause
+
