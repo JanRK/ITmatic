@@ -1,11 +1,3 @@
-$preclean = Get-WmiObject Win32_LogicalDisk -ComputerName remotecomputer -Filter "DeviceID='C:'" |
-Select-Object Size,FreeSpace
-
-<#
-$preclean.Size
-$preclean.FreeSpace
-#>
-
 net stop bits
 net stop wuauserv
 
@@ -39,15 +31,3 @@ IF EXIST "C:\Users\" (
   forfiles /p "%%x\AppData\Local\Microsoft\Windows\WER\ReportQueue" /s /m *.* /C "cmd /c del /Q @path"
  )
 )
-
-:SystemRestore
-echo powershell "disable-computerrestore -drive 'C:\'"
-
-
-$postclean = Get-WmiObject Win32_LogicalDisk -ComputerName remotecomputer -Filter "DeviceID='C:'" |
-Select-Object Size,FreeSpace
-
-write-host Space saved
-$preclean.FreeSpace-$postclean.FreeSpace
-pause
-
