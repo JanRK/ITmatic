@@ -1,5 +1,5 @@
 apt-get update
-apt-get -y install openssh-server ntp sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop
+apt-get -y install openssh-server ntp sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop git-core
 adduser jan sudo
 
 # Skip translations
