@@ -1,5 +1,5 @@
-apt-get update
-apt-get -y install openssh-server ntp sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop git-core
+apt update
+apt -y install openssh-server sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop git-core
 adduser jan sudo
 
 # Skip translations
@@ -8,8 +8,9 @@ sudo sh -c "echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/99translatio
 # apt-get -y install open-vm-tools 
 
 # NTP
-sed -i 's/debian.pool/dk.pool/g' /etc/ntp.conf
-systemctl restart ntp
+# apt -y install ntp
+# sed -i 's/debian.pool/dk.pool/g' /etc/ntp.conf
+# systemctl restart ntp
 
 
 
