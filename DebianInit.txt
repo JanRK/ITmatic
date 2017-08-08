@@ -52,11 +52,9 @@ sudo sh -c "echo 'deb-src http://nginx.org/packages/debian/ jessie nginx' >> /et
 
 
 # MariaDB
-sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
 
-sudo sh -c "echo 'deb http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.1/debian jessie main' >> /etc/apt/sources.list.d/mariadb.list"
-sudo sh -c "echo 'deb-src http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.1/debian jessie main' >> /etc/apt/sources.list.d/mariadb.list"
-
+sudo add-apt-repository 'deb [arch=amd64] http://ftp.ddg.lth.se/mariadb/repo/10.2/debian stretch main'
 
 # HHVM
 wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | sudo apt-key add -
