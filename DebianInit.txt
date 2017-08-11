@@ -33,14 +33,14 @@ EOF
 # Cockpit
 echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list
 apt-get update
-# apt-get install cockpit cockpit-docker
+# apt install cockpit cockpit-docker
 # systemctl enable --now cockpit.socket
 
 
 # Docker
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
-# sudo apt-get install docker-ce
+# sudo apt install docker-ce
 # adduser jan docker
 
 
