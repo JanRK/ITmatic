@@ -1,5 +1,5 @@
 apt update
-apt -y install openssh-server sudo curl wget nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop git-core dirmngr gnupg
+apt -y install openssh-server sudo curl wget httpie nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop git-core dirmngr gnupg
 adduser jan sudo
 
 # Skip translations
