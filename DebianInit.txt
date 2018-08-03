@@ -1,5 +1,5 @@
-apt update
-apt -y install openssh-server sudo curl wget httpie nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop git-core dirmngr gnupg
+apt-get update
+apt-get -y install openssh-server sudo curl wget httpie nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop git-core dirmngr gnupg
 adduser jan sudo
 
 # Skip translations
@@ -8,7 +8,7 @@ sudo sh -c "echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/99translatio
 # apt-get -y install open-vm-tools 
 
 # NTP
-# apt -y install ntp
+# apt-get -y install ntp
 # sed -i 's/debian.pool/dk.pool/g' /etc/ntp.conf
 # systemctl restart ntp
 
@@ -33,7 +33,7 @@ EOF
 # Cockpit
 echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list
 apt-get update
-# apt install cockpit cockpit-docker
+# apt-get install cockpit cockpit-docker
 # systemctl enable --now cockpit.socket
 
 
