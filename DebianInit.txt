@@ -59,3 +59,16 @@ sudo add-apt-repository 'deb [arch=amd64] http://ftp.ddg.lth.se/mariadb/repo/10.
 # HHVM
 wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | sudo apt-key add -
 sudo sh -c "echo 'deb http://dl.hhvm.com/debian jessie main' >> /etc/apt/sources.list.d/hhvm.list"
+
+
+# Kubectl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo sh -c "echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' >> /etc/apt/sources.list.d/kubernetes.list"
+sudo apt-get update
+sudo apt-get install -y kubectl
+
+#Azure CLI
+curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+sudo sh -c "echo 'deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main' >> /etc/apt/sources.list.d/azure-cli.list"
+sudo apt-get update 
+sudo apt-get install -y azure-cli
