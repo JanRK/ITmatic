@@ -1,0 +1,18 @@
+! 10/21/2017, 5:28:28 PM https://sol.dk/debat/jeg-er-lidt-skuffet-over-politiet
+sol.dk##.ui-front.ui-widget-overlay
+
+! 10/21/2017, 5:29:20 PM https://sol.dk/debat/jeg-er-lidt-skuffet-over-politiet
+||sol.dk/sites/all/modules/jquery_update/replace/ui/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png$image
+
+! 10/21/2017, 5:35:05 PM https://sol.dk/debat/jeg-er-lidt-skuffet-over-politiet
+sol.dk###parent-sol-dialog
+
+! 8/3/2018, 12:36:02 PM https://www.washingtonpost.com/
+||washingtonpost.com/wp-stat/pwapi/prod/*
+
+! 8/28/2018, 12:20:20 PM https://www.thedailybeast.com/sen-inhofe-mccain-partially-to-blame-for-flag-ordeal-because-he-was-mean-to-trump
+www.thedailybeast.com###optanon-popup-bg
+
+! 9/24/2018, 3:42:36 PM forbes.com
+@@||consent.truste.com/notice?domain=forbes.com&c=teconsent&behavior=expressed$script,domain=www.forbes.com
+
