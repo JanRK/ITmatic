@@ -39,7 +39,7 @@ apt-get update
 
 # Docker
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
-add-apt-repository "deb [signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 # sudo apt install docker-ce
 # adduser jan docker
 
