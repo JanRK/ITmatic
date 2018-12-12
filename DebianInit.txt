@@ -70,6 +70,6 @@ sudo apt-get install -y kubectl
 #Azure CLI and Powershell
 sudo wget --directory-prefix=/usr/share/keyrings https://packages.microsoft.com/keys/microsoft.asc && sudo gpg --dearmor /usr/share/keyrings/microsoft.asc
 sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/microsoft.asc.gpg] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main' > /etc/apt/sources.list.d/azure-cli.list"
-echo 'deb [signed-by=/usr/share/keyrings/microsoft.asc.gpg] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main' > /etc/apt/sources.list.d/powershell.list
+sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/microsoft.asc.gpg] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main' > /etc/apt/sources.list.d/powershell.list"
 sudo apt-get update 
 sudo apt-get install -y azure-cli
