@@ -2,6 +2,9 @@ apt-get update
 apt-get -y install openssh-server sudo curl wget httpie nano unattended-upgrades software-properties-common unzip p7zip apt-transport-https ca-certificates iftop git-core dirmngr gnupg
 adduser jan sudo
 
+# Net test tools
+# apt-get install -y --no-install-recommends mtr iputils-ping iputils-tracepath traceroute
+
 # Skip translations
 sudo sh -c "echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/99translations"
 
