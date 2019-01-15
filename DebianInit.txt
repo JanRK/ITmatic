@@ -76,3 +76,8 @@ sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/microsoft.asc.gpg] https://
 sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/microsoft.asc.gpg] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main' > /etc/apt/sources.list.d/powershell.list"
 sudo apt-get update 
 sudo apt-get install -y azure-cli
+
+#Google Cloud SDK - gcloud
+sudo wget -O /usr/share/keyrings/gcloud-key.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/gcloud-key.gpg] https://packages.cloud.google.com/apt cloud-sdk-$(lsb_release -c -s) main' >> /etc/apt/sources.list.d/gcloud.list"
+
