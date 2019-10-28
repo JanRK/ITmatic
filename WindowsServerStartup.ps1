@@ -12,13 +12,13 @@ Start-Process msiexec.exe -Wait -ArgumentList "/I $temppath\octo.exe /quiet"
 $metadata=Invoke-RestMethod -Headers @{'Metadata-Flavor'='Google'} -Uri 'http://metadata.google.internal/computeMetadata/v1/?recursive=true'
 $octothumb=$metadata.instance.attributes.octopus
 
-$tentacledir="C:\Program Files\Octopus Deploy\Tentacle"
+$tentaclefile=((Get-Childitem -Path "$Env:ProgramFiles(x86)","$Env:ProgramFiles" -Include "Tentacle.exe" -File -Recurse -ErrorAction SilentlyContinue) | where { $_.Directory -Like "*Octopus*" } | select -first 1).FullName
 
-& $tentacledir/Tentacle.exe create-instance --instance "Tentacle" --config "C:\Octopus\Tentacle.config" --console
-& $tentacledir/Tentacle.exe new-certificate --instance "Tentacle" --if-blank --console
-& $tentacledir/Tentacle.exe configure --instance "Tentacle" --reset-trust --console
-& $tentacledir/Tentacle.exe configure --instance "Tentacle" --home "C:\Octopus" --app "C:\Octopus\Applications" --port "10933" --console
-& $tentacledir/Tentacle.exe configure --instance "Tentacle" --trust $octothumb --console
+& $tentaclefile create-instance --instance "Tentacle" --config "C:\Octopus\Tentacle.config" --console
+& $tentaclefile new-certificate --instance "Tentacle" --if-blank --console
+& $tentaclefile configure --instance "Tentacle" --reset-trust --console
+& $tentaclefile configure --instance "Tentacle" --home "C:\Octopus" --app "C:\Octopus\Applications" --port "10933" --console
+& $tentaclefile configure --instance "Tentacle" --trust $octothumb --console
 netsh advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=10933
-# & $tentacledir/Tentacle.exe register-with --instance "Tentacle" --server "http://YOUR_OCTOPUS" --apiKey="API-YOUR_API_KEY" --role "web-server" --environment "Staging" --comms-style TentaclePassive --console
-& $tentacledir/Tentacle.exe service --instance "Tentacle" --install --start --console
+# & $tentaclefile register-with --instance "Tentacle" --server "http://YOUR_OCTOPUS" --apiKey="API-YOUR_API_KEY" --role "web-server" --environment "Staging" --comms-style TentaclePassive --console
+& $tentaclefile service --instance "Tentacle" --install --start --console
