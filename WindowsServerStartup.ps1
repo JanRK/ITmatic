@@ -14,11 +14,11 @@ $octothumb=$metadata.instance.attributes.octopus
 
 $tentacledir="C:\Program Files\Octopus Deploy\Tentacle"
 
-$tentacledir/Tentacle.exe create-instance --instance "Tentacle" --config "C:\Octopus\Tentacle.config" --console
-$tentacledir/Tentacle.exe new-certificate --instance "Tentacle" --if-blank --console
-$tentacledir/Tentacle.exe configure --instance "Tentacle" --reset-trust --console
-$tentacledir/Tentacle.exe configure --instance "Tentacle" --home "C:\Octopus" --app "C:\Octopus\Applications" --port "10933" --console
-$tentacledir/Tentacle.exe configure --instance "Tentacle" --trust $octothumb --console
+& $tentacledir/Tentacle.exe create-instance --instance "Tentacle" --config "C:\Octopus\Tentacle.config" --console
+& $tentacledir/Tentacle.exe new-certificate --instance "Tentacle" --if-blank --console
+& $tentacledir/Tentacle.exe configure --instance "Tentacle" --reset-trust --console
+& $tentacledir/Tentacle.exe configure --instance "Tentacle" --home "C:\Octopus" --app "C:\Octopus\Applications" --port "10933" --console
+& $tentacledir/Tentacle.exe configure --instance "Tentacle" --trust $octothumb --console
 netsh advfirewall firewall add rule "name=Octopus Deploy Tentacle" dir=in action=allow protocol=TCP localport=10933
-# $tentacledir/Tentacle.exe register-with --instance "Tentacle" --server "http://YOUR_OCTOPUS" --apiKey="API-YOUR_API_KEY" --role "web-server" --environment "Staging" --comms-style TentaclePassive --console
-$tentacledir/Tentacle.exe service --instance "Tentacle" --install --start --console
+# & $tentacledir/Tentacle.exe register-with --instance "Tentacle" --server "http://YOUR_OCTOPUS" --apiKey="API-YOUR_API_KEY" --role "web-server" --environment "Staging" --comms-style TentaclePassive --console
+& $tentacledir/Tentacle.exe service --instance "Tentacle" --install --start --console
