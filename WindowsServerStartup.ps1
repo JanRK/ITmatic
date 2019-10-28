@@ -3,9 +3,11 @@ Set-TimeZone -id "Romance Standard Time"
 # Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 # choco install wget curl 7zip -y
 $url="https://octopus.com/downloads/latest/WindowsX64/OctopusTentacle"
-(New-Object System.Net.WebClient).DownloadFile($url, "$pwd\octo.exe")
+$temppath=[system.io.path]::GetTempPath()
+echo "$temppath"
+(New-Object System.Net.WebClient).DownloadFile($url, "$temppath\octo.exe")
 
-Start-Process msiexec.exe -Wait -ArgumentList "/I $pwd\octo.exe /quiet"
+Start-Process msiexec.exe -Wait -ArgumentList "/I $temppath\octo.exe /quiet"
 
 $metadata=Invoke-RestMethod -Headers @{'Metadata-Flavor'='Google'} -Uri 'http://metadata.google.internal/computeMetadata/v1/?recursive=true'
 $octothumb=$metadata.instance.attributes.octopus
