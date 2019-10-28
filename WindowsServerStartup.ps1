@@ -1,1 +1,1 @@
-echo "test" | Out-File c:\test2.txt
+Set-TimeZone -id "Romance Standard Time"
