@@ -1,0 +1,69 @@
+steps:
+- id: 'Echo vars'
+  name: stedolan/jq
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+      echo https://github.com/mvno/$REPO_NAME.git
+      echo Cloud Build provides the following default substitutions:
+      echo " "
+      echo PROJECT_ID $PROJECT_ID: build.ProjectId
+      echo BUILD_ID $BUILD_ID: build.BuildId
+      echo COMMIT_SHA $COMMIT_SHA: build.SourceProvenance.ResolvedRepoSource.Revision.CommitSha only available for triggered builds
+      echo SHORT_SHA $SHORT_SHA : The first seven characters of COMMIT_SHA only available for triggered builds
+      echo REPO_NAME $REPO_NAME: build.Source.RepoSource.RepoName only available for triggered builds
+      echo BRANCH_NAME $BRANCH_NAME: build.Source.RepoSource.Revision.BranchName only available for triggered builds
+      echo TAG_NAME $TAG_NAME: build.Source.RepoSource.Revision.TagName only available for triggered builds
+      echo REVISION_ID $REVISION_ID: build.SourceProvenance.ResolvedRepoSource.Revision.CommitSha only available for triggered builds
+      echo Cloud Build also provides the following GitHub-specific default substitutions pull request only:
+      echo " "
+      echo _HEAD_BRANCH : head branch of the pull request
+      echo _BASE_BRANCH : base branch of the pull request
+      echo _HEAD_REPO_URL : url of the head repo of the pull request
+      echo _PR_NUMBER : number of the pull request
+      echo If a default substitution is not available such as with sourceless builds, or with builds that use storage source, then occurrences of the missing variable are replaced with an empty string.
+      echo " "
+      echo When starting a build using gcloud builds submit, you can specify variables that would normally come from triggered builds with the --substitutions argument. Specifically, you can manually provide values for:
+      echo " "
+      echo REPO_NAME
+      echo BRANCH_NAME
+      echo TAG_NAME
+      echo REVISION_ID
+      echo COMMIT_SHA
+      echo SHORT_SHA
+
+
+
+- id: 'Gitversion: Unshallow repo'
+  name: gcr.io/cloud-builders/git
+  args: [clone, https://github.com/mvno/$REPO_NAME.git]
+
+- id: 'Gitversion: Parse'
+  name: gittools/gitversion:latest-linux
+  entrypoint: /bin/bash
+  args:
+    - -c 
+    - |
+      dotnet /app/GitVersion.dll > /workspace/gitversion.json
+
+- id: 'Gitversion: Env file'
+  name: stedolan/jq
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+      for s in $(cat /workspace/gitversion.json | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
+        echo "export $s" >> /workspace/gitversion.env
+      done
+
+- id: 'Build and push API image'
+  name: gcr.io/cloud-builders/docker
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+      source /workspace/gitversion.env
+      docker build -t gcr.io/$PROJECT_ID/$REPO_NAME:$${SemVer}-$${BuildMetaData} .
+      docker push gcr.io/$PROJECT_ID/$REPO_NAME:$${SemVer}-$${BuildMetaData}
+
