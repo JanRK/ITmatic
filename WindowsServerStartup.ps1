@@ -16,6 +16,7 @@ $tentaclefile=((Get-Childitem -Path "$Env:ProgramFiles(x86)","$Env:ProgramFiles"
 
 & $tentaclefile create-instance --instance "Tentacle" --config "C:\Octopus\Tentacle.config" --console
 & $tentaclefile new-certificate --instance "Tentacle" --if-blank --console
+& $tentaclefile show-thumbprint --instance "Tentacle" --nologo
 & $tentaclefile configure --instance "Tentacle" --reset-trust --console
 & $tentaclefile configure --instance "Tentacle" --home "C:\Octopus" --app "C:\Octopus\Applications" --port "10933" --console
 & $tentaclefile configure --instance "Tentacle" --trust $octothumb --console
